@@ -1,26 +1,234 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── P-TAL.in Exact Font: AktivGrotesk @font-face Definitions ──────────────── */
+@font-face {
+  font-family: 'AktivGrotesk';
+  src: url('/fonts/AktivGrotesk-Thin.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@font-face {
+  font-family: 'AktivGrotesk';
+  src: url('/fonts/AktivGrotesk-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
+@font-face {
+  font-family: 'AktivGrotesk';
+  src: url('/fonts/AktivGrotesk-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'AktivGrotesk';
+  src: url('/fonts/AktivGrotesk-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'AktivGrotesk';
+  src: url('/fonts/AktivGrotesk-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'AktivGrotesk';
+  src: url('/fonts/AktivGrotesk-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-aktiv: var(--font-aktiv), "AktivGrotesk", system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-aktiv), "AktivGrotesk", system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-aktiv), "AktivGrotesk", system-ui, sans-serif;
+  --font-header: var(--font-aktiv), "AktivGrotesk", system-ui, sans-serif;
+  --font-cinzel: var(--font-aktiv), "AktivGrotesk", system-ui, sans-serif;
+  --font-cormorant: var(--font-aktiv), "AktivGrotesk", system-ui, sans-serif;
+  --font-serif: var(--font-noto-serif), "Noto Serif", Georgia, serif;
+  --font-marathi: var(--font-devanagari), "Tiro Devanagari Marathi", serif;
+  --color-saffron: #b22b15;
+  --color-saffron-dark: #8f2110;
+  --color-terracotta: #b22b15;
+  --color-terracotta-dark: #8f2110;
+  --color-gold: #c3771e;
+  --color-gold-dark: #9a5c13;
+  --color-brass: #c3771e;
+  --color-brass-dark: #9a5c13;
+  --color-parchment: #fff6eb;
+  --color-parchment-warm: #ffebd1;
+  --color-charcoal: #171513;
+  --color-mahogany: #2e150b;
+}
+
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #fff6eb;
+    --foreground: #171513;
+    --card: #ffffff;
+    --card-foreground: #171513;
+    --border: #e8e8e1;
+    --saffron: #b22b15;
+    --saffron-dark: #8f2110;
+    --gold: #c3771e;
+    --gold-dark: #9a5c13;
+    --whatsapp: #25d366;
+    --whatsapp-dark: #128c7e;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-aktiv), "AktivGrotesk", system-ui, -apple-system, sans-serif;
+    font-weight: 300;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-aktiv), "AktivGrotesk", system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── P-TAL.in Exact Typographic Utilities ───────────────────────────────────── */
+.font-aktiv {
+  font-family: var(--font-aktiv), "AktivGrotesk", system-ui, -apple-system, sans-serif;
+}
+
+.font-cinzel {
+  font-family: var(--font-aktiv), "AktivGrotesk", system-ui, -apple-system, sans-serif;
+}
+
+.font-cormorant {
+  font-family: var(--font-aktiv), "AktivGrotesk", system-ui, -apple-system, sans-serif;
+}
+
+.font-serif {
+  font-family: var(--font-noto-serif), "Noto Serif", Georgia, serif;
+}
+
+.font-marathi {
+  font-family: var(--font-devanagari), "Tiro Devanagari Marathi", serif;
+}
+
+.font-display {
+  font-family: var(--font-aktiv), "AktivGrotesk", system-ui, -apple-system, sans-serif;
+}
+
+/* ── Tactile Physical Textures ──────────────────────────────────────────────── */
+
+/* 1. Global Micro-Fiber Handmade Paper Grain Texture (SVG Noise) */
+.bg-paper-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.7'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 160px 160px;
+}
+
+/* 2. Deep Crimson Crushed Velvet Texture Backdrop */
+.bg-velvet-crush {
+  background: radial-gradient(circle at 50% 30%, #5c121d 0%, #3a0a12 55%, #1e0509 100%);
+  position: relative;
+}
+.bg-velvet-crush::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 235, 209, 0.08) 1px, transparent 1px);
+  background-size: 18px 18px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* 3. Ochre Canvas Weave Texture */
+.bg-ochre-canvas {
+  background-color: #c3771e;
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.05) 50%, transparent 50%),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 50%, transparent 50%);
+  background-size: 4px 4px;
+}
+
+/* 4. Metallic Brass & Gold Leaf Border Accents */
+.border-brass-emboss {
+  border: 1px solid #d4af37;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.gold-gradient-border {
+  border: 1px solid transparent;
+  background: linear-gradient(to bottom, #ffffff, #faf7f2) padding-box,
+              linear-gradient(to bottom, #d4af37, #c85a17) border-box;
+}
+
+.gold-gradient-dark-border {
+  border: 1px solid transparent;
+  background: linear-gradient(to bottom, #1f1c19, #171513) padding-box,
+              linear-gradient(to bottom, rgba(212, 175, 55, 0.4), rgba(200, 90, 23, 0.2)) border-box;
+}
+
+/* 5. Vintage Luthier Workshop Seal / Stamp Mark */
+.seal-stamp-vintage {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  border: 1px dashed rgba(195, 119, 30, 0.6);
+  background-color: rgba(255, 235, 209, 0.65);
+  box-shadow: inset 0 0 0 1px rgba(178, 43, 21, 0.15);
+  font-family: var(--font-cinzel), "Cinzel", Georgia, serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* 6. Gold Leaf Text Accent */
+.text-gold-leaf {
+  background: linear-gradient(135deg, #ffebd1 0%, #e8a553 50%, #c3771e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 7. Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-33.333%); }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffebd1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d9cec1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b22b15;
 }
